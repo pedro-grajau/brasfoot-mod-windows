@@ -1,0 +1,21 @@
+name: Verificar repositorio
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  source-check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verificar arquivos e documentacao
+        run: python tools/check_repository.py
+      - name: Validar sintaxe PowerShell
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile("$PWD/tools/windows.ps1", [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count) { $errors | Write-Error; exit 1 }

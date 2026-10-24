@@ -1,0 +1,30 @@
+# Jogo original e arquivos gerados
+*.exe
+*.msi
+*.jar
+*.class
+/artifacts/
+/runtime/
+/.tools/
+/analysis/
+/upstream/
+# Saves, preferencias e temporarios
+*.s22
+*.sbck
+*.info
+*.log
+*.tmp
+*.zip
+*.7z
+__pycache__/
+*.pyc
+.venv/
+# Configuracoes pessoais
+/.agents/
+/.codex/
+/.aws/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+Desktop.ini
